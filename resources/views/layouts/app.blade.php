@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -40,14 +40,15 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Xeedus
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/courses') }}">Courses</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
                 </ul>
 
@@ -68,9 +69,9 @@
                                 <li><a href="{{ url('/products/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Producten</a></li>
 
                                 <!--  //admin -->
-                                <li><a href="{{ url('/videos/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
+                                <li><a href="{{ url('video') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
-                                <li><a href="{{ url('/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn upload</a></li>
+                                <li><a href="{{ url('courses/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
 
                                 <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits</a></li>
@@ -92,9 +93,9 @@
                 <ul>
                     <li><h2>Social Media</h2></li>
                     <ul>
-                        <li><a href="{{ url('/contact') }}">Twitter</a></li>
-                        <li><a href="{{ url('/contact') }}">Google+</a></li>
-                        <li><a href="{{ url('/contact') }}">Facebook</a></li>
+                        <li><a href="{{ url('/') }}">Twitter</a></li>
+                        <li><a href="{{ url('/') }}">Google+</a></li>
+                        <li><a href="{{ url('/') }}">Facebook</a></li>
                     </ul>
                 </ul>
             </div>

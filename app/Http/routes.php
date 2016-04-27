@@ -12,14 +12,28 @@
 */
 
 Route::auth();
+Route::resource('courses', 'VideoController');
 
 Route::get('/', 'HomeController@index');
 Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
+Route::get('courses', ['as' => 'courses', 'uses' => 'VideoController@index']);
+
+
+
+
+Route::get('support', function(){
+return 'support';
+});
+
 
 //must be loggedin
 Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
+
+    Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
+
+
 
     Route::get('/profile/edit', function(){
         return view('auth.profile.edit');
