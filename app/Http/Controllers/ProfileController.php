@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Auth;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -16,7 +17,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.profile.show');
     }
 
     /**
@@ -48,7 +49,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

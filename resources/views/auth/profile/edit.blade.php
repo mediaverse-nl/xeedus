@@ -7,16 +7,16 @@
             <div class="panel panel-default">
                 @include('common.errors')
 
-                        <!-- New Task Form -->
-                <form action="{{ url('task') }}" method="POST" class="form-horizontal">
+                <!-- New Task Form -->
+                <form action="{{ url('/profile/edit/') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
 
-                            <!-- Task Name -->
+                    <!-- Task Name -->
                     <div class="form-group">
-                        <label for="task" class="col-sm-3 control-label">Task</label>
+                        <label for="task" class="col-sm-3 control-label">name</label>
 
                         <div class="col-sm-6">
-                            <input type="text" name="name" id="task-name" class="form-control">
+                            <input type="text" name="name" id="task-name" value="{{ Auth::user()->name }}" class="form-control">
                         </div>
                     </div>
 
@@ -30,7 +30,6 @@
                     </div>
                 </form>
             </div>
-            <a href="/profile/edit" class="btn btn-default">edit profile</a>
         </div>
     </div>
 </div>

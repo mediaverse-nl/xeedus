@@ -11,46 +11,44 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('contact', ['as' => 'contact', function(){
-    return view('welcome');
-}]);
-
-
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
 
-Route::get('/profile', function(){
-    return view('pages.profile');
+//must be loggedin
+Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
+
+    Route::get('/profile/edit', function(){
+        return view('auth.profile.edit');
+    });
+
+    Route::post('/profile/edit/', function(Request $request){
+        $validator = validator::make($request->all(), [
+
+        ]);
+
+        if ($validator->fails()){
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $profile = new Profile;
+
+        $profile->name = $request->name;
+        $profile->save();
+
+        return redirect('/profile');
+
+    });
+
 });
 
 
-Route::get('/profile/edit', function(){
-    return view('auth.profile.edit');
-});
 
 
-Route::post('/profile/edit/', function(Request $request){
-    $validator = validator::make($request->all(), [
 
-    ]);
 
-    if ($validator->fails()){
-        return redirect('/')
-            ->withInput()
-            ->withErrors($validator);
-    }
-
-    $profile = new Profile;
-
-    $profile->name = $request->name;
-    $profile->save();
-
-    return redirect('/profile');
-
-});

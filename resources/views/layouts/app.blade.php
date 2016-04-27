@@ -48,6 +48,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -63,7 +64,16 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/profile') }}"><i class="fa fa-btn fa-sign-out"></i>Profile</a></li>
+                                <li><a href="{{ url('/profile') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Profiel</a></li>
+                                <li><a href="{{ url('/products/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Producten</a></li>
+
+                                <!--  //admin -->
+                                <li><a href="{{ url('/videos/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
+                                <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
+                                <li><a href="{{ url('/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn upload</a></li>
+
+
+                                <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
@@ -74,6 +84,58 @@
     </nav>
 
     @yield('content')
+
+    <div id="footer" style="background-color: #F8F8F8; border: 1px solid #E7E7E7;">
+        <div class="container">
+
+            <div class="col-lg-3">
+                <ul>
+                    <li><h2>Social Media</h2></li>
+                    <ul>
+                        <li><a href="{{ url('/contact') }}">Twitter</a></li>
+                        <li><a href="{{ url('/contact') }}">Google+</a></li>
+                        <li><a href="{{ url('/contact') }}">Facebook</a></li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <ul>
+                    <li><h2>Contact Us</h2></li>
+                    <ul>
+                        <li><a href="{{ url('/contact') }}">contact</a></li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <ul>
+                    <li><h2>Our Services</h2></li>
+                    <ul>
+                        <li><a href="{{ url('/support/') }}">support</a></li>
+                        <li><a href="{{ url('/faq/') }}">FAQ</a></li>
+                        <li><a href="{{ url('/partnerplan/') }}">Partnerplan</a></li>
+                        <li><a href="{{ url('/contact/') }}">Contact</a></li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <ul>
+                    <li><h2>About Us</h2></li>
+                    <ul>
+                        <li><a href="{{ url('/privacy-policy/') }}">Privacy Policy</a></li>
+                        <li><a href="{{ url('/terms-conditions/') }}">Terms & Conditions</a></li>
+                        <li><a href="{{ url('/site-map/') }}">Site map</a></li>
+                    </ul>
+                </ul>
+            </div>
+            <hr>
+
+            <p class="text-muted credit">Example courtesy <a href="">Deveron</a> and <a href="">Reniers</a>.</p>
+
+        </div>
+    </div>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
