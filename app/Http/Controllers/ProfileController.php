@@ -60,7 +60,12 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find(Auth::user()->id);
+
+
+
+        return view()->with();
+
     }
 
     /**
@@ -70,9 +75,24 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request){
+
+        $validator = validator::make($request->all(), [
+
+        ]);
+
+        if ($validator->fails()){
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $profile = new User;
+
+        $profile->voornaam = $request->name;
+        $profile->save();
+
+        return redirect('/profile');
     }
 
     /**

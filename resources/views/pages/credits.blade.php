@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    upload
+    credits
 @stop
 
 @section('content')
@@ -9,17 +9,20 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">upload</div>
+                    <div class="panel-heading">credits</div>
+
                     <div class="panel-body">
 
-                        @include('common.errors')
 
-                        {!! Form::open(['route' => 'courses.store']) !!}
+                        {!! Form::open(['route' => '']) !!}
 
-                        {!! Form::label('name', 'name') !!}
-                        {!! Form::text('name') !!}
+                        {!! Form::label('credits', '10') !!}
+                        {!! Form::radio('credits', '10') !!}
 
-                        {!! Form::submit('Create') !!}
+                        {!! Form::label('credits', '20') !!}
+                        {!! Form::radio('credits', '20') !!}
+
+                        {!! Form::submit('Buy') !!}
 
                         {!! Form::close() !!}
 

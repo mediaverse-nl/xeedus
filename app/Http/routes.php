@@ -10,57 +10,57 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group(['middleware' => ['web']], function () {
 
-Route::auth();
-Route::resource('courses', 'VideoController');
-
-Route::get('/', 'HomeController@index');
-Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
-Route::get('courses', ['as' => 'courses', 'uses' => 'VideoController@index']);
+    Route::auth();
 
 
+    Route::get('/', 'HomeController@index');
+    Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
+    Route::get('courses', ['as' => 'courses', 'uses' => 'VideoController@index']);
 
+    Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
 
-Route::get('support', function(){
-return 'support';
-});
-
-
-//must be loggedin
-Route::group(['middleware' => 'auth'], function () {
-    
-    Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
-
-    Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
-
-
-
-    Route::get('/profile/edit', function(){
-        return view('auth.profile.edit');
+    Route::get('support', function(){
+        return 'support';
     });
 
-    Route::post('/profile/edit/', function(Request $request){
-        $validator = validator::make($request->all(), [
+    //must be loggedin
+    Route::group(['middleware' => 'auth'], function () {
 
-        ]);
+        Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
+        Route::get('/profile/edit', ['as' => 'profile', 'uses' => 'ProfileController@index']);
 
-        if ($validator->fails()){
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
+        Route::resource('/profile', 'ProfileController');
 
-        $profile = new Profile;
+        Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
+        Route::patch('/courses',['as' => 'store', 'uses' => 'VideoController@store']);
+        Route::resource('/courses', 'VideoController');
 
-        $profile->name = $request->name;
-        $profile->save();
 
-        return redirect('/profile');
+        Route::post('/profile/edit/', function(Request $request){
+            $validator = validator::make($request->all(), [
+
+            ]);
+
+            if ($validator->fails()){
+                return redirect('/')
+                    ->withInput()
+                    ->withErrors($validator);
+            }
+
+            $profile = new Profile;
+
+            $profile->name = $request->name;
+            $profile->save();
+
+            return redirect('/profile');
+
+        });
 
     });
 
 });
-
 
 
 

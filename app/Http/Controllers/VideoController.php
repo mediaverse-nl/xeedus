@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Video;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,21 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('courses/upload')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $inputs = $request->all();
+
+        $video = Video::Create($inputs);
+
+        return redirect()->route('courses.index');
     }
 
     /**

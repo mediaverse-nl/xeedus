@@ -14,9 +14,18 @@ class CreateVideosTable extends Migration
     {
         Schema::create('Videos', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('catogorie_id')->references('id')->on('users');
             $table->string('name');
             $table->string('video_key');
-            $table->string('airline');
+            $table->string('thumbnail');
+            $table->string('tietel');
+            $table->string('beschrijving');
+            $table->string('prijs');
+            $table->string('level');
+            $table->string('status');
             $table->timestamps();
         });
     }
