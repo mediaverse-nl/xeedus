@@ -14,7 +14,8 @@
                     <div class="panel-body">
 
                         @foreach($videos as $video)
-                            {{ $video->name }}
+                            {{ $video->name  }}<br>
+                            <a href="/courses/{{ $video->id  }}/edit">{{ $video->id  }}</a><br><br><hr>
                         @endforeach
 
                     </div>

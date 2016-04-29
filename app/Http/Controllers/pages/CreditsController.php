@@ -13,10 +13,4 @@ class CreditsController extends Controller
         return view('pages.credits');
     }
 
-    public function store(Request $request){
-
-        $mollie = $request->all();
-
-    }
-
 }

@@ -98,7 +98,7 @@
                         <li><a href="{{ url('/') }}">Facebook</a></li>
                     </ul>
                 </ul>
-            </div>
+            </div>a
 
             <div class="col-lg-3">
                 <ul>
@@ -115,7 +115,7 @@
                     <ul>
                         <li><a href="{{ url('/support/') }}">support</a></li>
                         <li><a href="{{ url('/faq/') }}">FAQ</a></li>
-                        <li><a href="{{ url('/partnerplan/') }}">Partnerplan</a></li>
+                        <li><a href="{{ url('/partner/') }}">Partner Program</a></li>
                         <li><a href="{{ url('/contact/') }}">Contact</a></li>
                     </ul>
                 </ul>
@@ -126,8 +126,8 @@
                     <li><h2>About Us</h2></li>
                     <ul>
                         <li><a href="{{ url('/privacy-policy/') }}">Privacy Policy</a></li>
-                        <li><a href="{{ url('/terms-conditions/') }}">Terms & Conditions</a></li>
-                        <li><a href="{{ url('/site-map/') }}">Site map</a></li>
+                        <li><a href="{{ url('/terms-and-conditions/') }}">Terms And Conditions</a></li>
+                        <li><a href="{{ url('/sitemap/') }}">Sitemap</a></li>
                     </ul>
                 </ul>
             </div>

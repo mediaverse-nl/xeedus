@@ -15,10 +15,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
 
-    Route::get('/', 'HomeController@index');á
-    Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
+    Route::get('/', 'HomeController@index');
+    Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
     Route::get('courses', ['as' => 'courses', 'uses' => 'VideoController@index']);
-
     Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
 
     Route::get('support', function(){
@@ -33,7 +32,10 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::resource('/profile', 'ProfileController');
 
+        Route::get('/courses/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);
+
         Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
+
         Route::patch('/courses',['as' => 'store', 'uses' => 'VideoController@store']);
         Route::resource('/courses', 'VideoController');
 

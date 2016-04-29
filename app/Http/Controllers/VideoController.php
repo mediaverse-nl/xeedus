@@ -77,7 +77,12 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        // get the nerd
+        $video = Video::find($id);
+
+        // show the edit form and pass the nerd
+        return view('video.edit')
+            ->with('video', $video);
     }
 
     /**
@@ -89,7 +94,26 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('courses/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            // store
+            $video = Video::find($id);
+            $video->name = $request->name;
+            $video->save();
+
+            // redirect
+            return redirect('courses');
+        }
     }
 
     /**

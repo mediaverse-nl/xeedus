@@ -14,13 +14,16 @@
                     <div class="panel-body">
 
 
-                        {!! Form::open(['route' => '']) !!}
+                        {!! Form::open(['route' => 'credits']) !!}
 
                         {!! Form::label('credits', '10') !!}
                         {!! Form::radio('credits', '10') !!}
 
                         {!! Form::label('credits', '20') !!}
                         {!! Form::radio('credits', '20') !!}
+
+                        {!! Form::label('credits', '50') !!}
+                        {!! Form::radio('credits', '50') !!}
 
                         {!! Form::submit('Buy') !!}
 
