@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Video;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -50,6 +51,7 @@ class ProfileController extends Controller
     public function show($id)
     {
 
+
     }
 
     /**
@@ -61,9 +63,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user = User::find(Auth::user()->id);
-
-
-
+        
         return view()->with();
 
     }

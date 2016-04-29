@@ -14,7 +14,7 @@
                     <div class="panel-body">
 
                         @foreach($videos as $video)
-                            {{$video->name}}
+                            {{ $video->name }}
                         @endforeach
 
                     </div>

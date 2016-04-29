@@ -19,7 +19,7 @@
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}
 
-                        {!! Form::submit('Create') !!}
+                        {!! Form::submit('submit') !!}
 
                         {!! Form::close() !!}
 

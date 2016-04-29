@@ -15,7 +15,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
 
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index');á
     Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
     Route::get('courses', ['as' => 'courses', 'uses' => 'VideoController@index']);
 
