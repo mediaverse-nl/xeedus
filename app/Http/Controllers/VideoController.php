@@ -20,7 +20,6 @@ class VideoController extends Controller
         $videos = Video::all();
 
         return view('video.index')->with('videos', $videos);
-        
     }
 
     /**
@@ -66,7 +65,12 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+        // get the nerd
+        $video = Video::find($id);
+
+        // show the view and pass the nerd to it
+        return view('video.show')
+            ->with('video', $video);
     }
 
     /**
@@ -94,7 +98,6 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $validator = Validator::make($request->all(), [

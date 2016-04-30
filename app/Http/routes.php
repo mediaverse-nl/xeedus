@@ -28,37 +28,16 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
-        Route::get('/profile/edit', ['as' => 'profile', 'uses' => 'ProfileController@index']);
-
+        Route::get('/profile/edit', ['as' => 'profile', 'uses' => 'ProfileController@edit']);
+        Route::patch('/profile', ['as' => 'store', 'uses' => 'ProfileController@store']);
         Route::resource('/profile', 'ProfileController');
 
         Route::get('/courses/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);
-
+        Route::get('/courses/{id}', ['as' => 'show', 'uses' => 'VideoController@show']);
         Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
-
-        Route::patch('/courses',['as' => 'store', 'uses' => 'VideoController@store']);
+        Route::patch('/courses', ['as' => 'store', 'uses' => 'VideoController@store']);
         Route::resource('/courses', 'VideoController');
 
-
-        Route::post('/profile/edit/', function(Request $request){
-            $validator = validator::make($request->all(), [
-
-            ]);
-
-            if ($validator->fails()){
-                return redirect('/')
-                    ->withInput()
-                    ->withErrors($validator);
-            }
-
-            $profile = new Profile;
-
-            $profile->name = $request->name;
-            $profile->save();
-
-            return redirect('/profile');
-
-        });
 
     });
 

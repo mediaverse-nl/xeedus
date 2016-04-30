@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -72,15 +74,32 @@ class AuthController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        
-        return '';
-        
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $validator = Validator::make($request->all(), [
+            'voornaam' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('profile/edit')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            // store
+            $user = User::find(Auth::user());
+            $user->voornaam = $request->voornaam;
+            $user->save();
+
+            // redirect
+            return redirect('profile');
+        }
     }
 }
