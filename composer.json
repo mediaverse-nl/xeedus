@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "laravelcollective/html": "~5.0",
+        "laravelcollective/html": "^5.2",
         "mollie/mollie-api-php": "1.4.x"
     },
     "require-dev": {

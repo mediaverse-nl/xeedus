@@ -31,12 +31,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::patch('/profile', ['as' => 'store', 'uses' => 'ProfileController@store']);
         Route::resource('/profile', 'ProfileController');
 
+        Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
         Route::get('/courses/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);
         Route::get('/courses/{id}', ['as' => 'show', 'uses' => 'VideoController@show']);
-        Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
         Route::patch('/courses', ['as' => 'store', 'uses' => 'VideoController@store']);
         Route::resource('/courses', 'VideoController');
-
 
     });
 
