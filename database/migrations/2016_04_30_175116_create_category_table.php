@@ -12,10 +12,12 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        $table->increments('id')->unsigned();
-        $table->string('name');
-        $table->string('image');
-        $table->timestamps();
+        Schema::create('Category', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->string('name');
+            $table->string('image');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -44,6 +44,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/admin', function () {
                 return 'you are an admin';
             });
+            
 
         });
 

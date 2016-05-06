@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('huisnummer');
             $table->integer('credits');
             $table->string('status');
-            $table->string('userlevel');
+            $table->string('role');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
