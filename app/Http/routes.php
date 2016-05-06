@@ -7,7 +7,7 @@
 |
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| and give it the controller to call when that URI is requested..
 |
 */
 Route::group(['middleware' => ['web']], function () {
@@ -36,6 +36,16 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/courses/{id}', ['as' => 'show', 'uses' => 'VideoController@show']);
         Route::patch('/courses', ['as' => 'store', 'uses' => 'VideoController@store']);
         Route::resource('/courses', 'VideoController');
+
+        Route::group(['middleware' => 'admin'], function () {
+
+            //routing for admin use
+
+            Route::get('/admin', function () {
+                return 'you are an admin';
+            });
+
+        });
 
     });
 
