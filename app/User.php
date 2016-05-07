@@ -26,4 +26,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin($roleName)
+    {
+        if ($this->role == $roleName)
+        {
+            return true;
+        }
+        return redirect('home');
+    }
+
 }

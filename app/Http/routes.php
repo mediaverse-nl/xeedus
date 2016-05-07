@@ -31,11 +31,16 @@ Route::group(['middleware' => ['web']], function () {
         Route::patch('/profile', ['as' => 'store', 'uses' => 'ProfileController@store']);
         Route::resource('/profile', 'ProfileController');
 
-        Route::get('/courses/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
-        Route::get('/courses/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);
-        Route::get('/courses/{id}', ['as' => 'show', 'uses' => 'VideoController@show']);
-        Route::patch('/courses', ['as' => 'store', 'uses' => 'VideoController@store']);
-        Route::resource('/courses', 'VideoController');
+        Route::get('/s/{cate}', ['as' => 'upload', 'uses' => 'VideoController@showVideoCate']);
+
+
+        Route::get('/course/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
+        Route::get('/course/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);
+        Route::get('/course/{id}', ['as' => 'show', 'uses' => 'VideoController@show']);
+        Route::patch('/course', ['as' => 'store', 'uses' => 'VideoController@store']);
+        Route::resource('/course', 'VideoController');
+
+        //route::get('/cate', ['as' => 'cate', function () {}]);
 
         Route::group(['middleware' => 'admin'], function () {
 
@@ -43,6 +48,9 @@ Route::group(['middleware' => ['web']], function () {
 
             Route::get('/admin', function () {
                 return 'you are an admin';
+            });
+            Route::get('/admin/products', function () {
+                return 'you are an admin and this is product page';
             });
             
 

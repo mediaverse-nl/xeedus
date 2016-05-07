@@ -48,9 +48,17 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/courses') }}">Courses</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li class="dropdown dropdown-large">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
+
+                        @include('layouts.cate')
+
+                    </li>
                 </ul>
+
+
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -71,12 +79,14 @@
                                 <!--  //admin -->
                                 <li><a href="{{ url('video') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
-                                <li><a href="{{ url('courses/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
+                                <li><a href="{{ url('course/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
 
                                 <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
+                            @if()
+
                         </li>
                     @endif
                 </ul>
@@ -142,5 +152,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("ul.menu > li").css("color", "red");
+            $("li ul li.sub").css("color", "blue")
+            $(".sub").hide();
+
+            $("ul.menu li").hover(
+
+                    function() {
+                        $(".sub", this).show();
+                    }, function() {
+                        $(".sub", this).hide();
+                    }
+
+            );
+
+        });
+    </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 
                         @include('common.errors')
 
-                        {!! Form::open(['route' => 'courses.store']) !!}
+                        {!! Form::open(['route' => 'course.store']) !!}
 
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}

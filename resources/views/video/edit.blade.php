@@ -14,7 +14,7 @@
 
                         @include('common.errors')
 
-                        {{ Form::model($video, array('route' => array('courses.update', $video->id), 'method' => 'PUT')) }}
+                        {{ Form::model($video, array('route' => array('course.update', $video->id), 'method' => 'PUT')) }}
 
                         <div class="form-group">
                             {{ Form::label('name', 'Name') }}

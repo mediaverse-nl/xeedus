@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Video;
@@ -46,7 +47,7 @@ class VideoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('courses/upload')
+            return redirect('course/upload')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -55,7 +56,7 @@ class VideoController extends Controller
 
         $video = Video::Create($inputs);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('course.index');
     }
 
     /**
@@ -72,6 +73,16 @@ class VideoController extends Controller
         // show the view and pass the nerd to it
         return view('video.show')
             ->with('video', $video);
+    }
+
+    public function showVideoCate($cate){
+        Category::find($cate);
+
+        $videos = Video::where('catogory_id', '=', $cate)->get();
+
+        foreach ($videos as $video) {
+           echo $video->name;
+        }
     }
 
     /**
@@ -106,7 +117,7 @@ class VideoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('courses/' . $id . '/edit')
+            return redirect('course/' . $id . '/edit')
                 ->withErrors($validator)
                 ->withInput();
         } else {
@@ -116,7 +127,7 @@ class VideoController extends Controller
             $video->save();
 
             // redirect
-            return redirect('courses');
+            return redirect('course');
         }
     }
 
