@@ -53,8 +53,9 @@ class VideoController extends Controller
         }
 
         $inputs = $request->all();
+        //$this->request->add(['date_of_birth' => )]);
 
-        $video = Video::Create($inputs);
+        Video::Create($inputs);
 
         return redirect()->route('course.index');
     }
@@ -75,9 +76,8 @@ class VideoController extends Controller
             ->with('video', $video);
     }
 
-    public function showVideoCate($cate){
-        Category::find($cate);
-
+    public function showVideoCate($cate)
+    {
         $videos = Video::where('catogory_id', '=', $cate)->get();
 
         foreach ($videos as $video) {
