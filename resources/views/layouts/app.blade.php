@@ -67,6 +67,18 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+                        @if(Auth::user()->role == 1)
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Admin <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/categories') }}"><i class="fa fa-btn fa-sign-out"></i>Categories</a></li>
+                                    <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-sign-out"></i>Users</a></li>
+                                    <li><a href="{{ url('/videos') }}"><i class="fa fa-btn fa-sign-out"></i>videos</a></li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->voornaam }} <span class="caret"></span>
@@ -108,7 +120,7 @@
                         <li><a href="{{ url('/') }}">Facebook</a></li>
                     </ul>
                 </ul>
-            </div>a
+            </div>
 
             <div class="col-lg-3">
                 <ul>
@@ -162,11 +174,11 @@
 
             $("ul.menu li").hover(
 
-                    function() {
-                        $(".sub", this).show();
-                    }, function() {
-                        $(".sub", this).hide();
-                    }
+                function() {
+                    $(".sub", this).show();
+                }, function() {
+                    $(".sub", this).hide();
+                }
 
             );
 

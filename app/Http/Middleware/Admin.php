@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
-class AdminMiddleware
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -15,11 +16,12 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->role != '1')
+        if ( Auth::check() && Auth::user()->isAdmin() )
         {
-            return redirect('/');
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect('home');
+
     }
 }

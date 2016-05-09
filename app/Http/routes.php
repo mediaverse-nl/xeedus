@@ -45,15 +45,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['middleware' => 'admin'], function () {
 
             //routing for admin use
+            Route::get('/admin', ['as' => 'dashboard', 'uses' => 'Admin\AdminController@index']);
 
-            Route::get('/admin', function () {
-                return 'you are an admin';
-            });
-            Route::get('/admin/products', function () {
-                return 'you are an admin and this is product page';
-            });
-            
-
+            //routing for admin category use
+            Route::get('/admin/categories', ['as' => 'AdminCategory', 'uses' => 'Admin\CategoryAdminController@index']);
+            Route::get('/admin/categories/create', ['as' => 'categories', 'uses' => 'Admin\CategoryAdminController@create']);
+            Route::patch('/admin/categories', ['as' => 'StoreCategory', 'uses' => 'Admin\CategoryAdminController@store']);
+            Route::resource('/admin/categories', 'Admin\CategoryAdminController');
         });
 
     });
