@@ -137,15 +137,16 @@ class VideoController extends Controller
             return redirect('course/' . $id . '/edit')
                 ->withErrors($validator)
                 ->withInput();
-        } else {
-            // store
-            $video = Video::find($id);
-            $video->name = $request->name;
-            $video->save();
-
-            // redirect
-            return redirect('course/uploaded');
         }
+
+        // store
+        $video = Video::find($id);
+        $video->name = $request->name;
+        $video->save();
+
+        // redirect
+        return redirect('course/uploaded');
+
     }
 
     /**
