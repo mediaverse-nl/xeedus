@@ -48,9 +48,17 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/courses') }}">Courses</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li class="dropdown dropdown-large">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
+
+                        @include('layouts.cate')
+
+                    </li>
                 </ul>
+
+
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -59,6 +67,18 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+                        @if(Auth::user()->role == 1)
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Admin <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/categories') }}"><i class="fa fa-btn fa-sign-out"></i>Categories</a></li>
+                                    <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-sign-out"></i>Users</a></li>
+                                    <li><a href="{{ url('/videos') }}"><i class="fa fa-btn fa-sign-out"></i>videos</a></li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->voornaam }} <span class="caret"></span>
@@ -69,14 +89,16 @@
                                 <li><a href="{{ url('/products/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Producten</a></li>
 
                                 <!--  //admin -->
-                                <li><a href="{{ url('video') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
+                                <li><a href="{{ url('course/uploaded') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
-                                <li><a href="{{ url('courses/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
+                                <li><a href="{{ url('course/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
 
                                 <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
+
+
                         </li>
                     @endif
                 </ul>
@@ -98,7 +120,7 @@
                         <li><a href="{{ url('/') }}">Facebook</a></li>
                     </ul>
                 </ul>
-            </div>a
+            </div>
 
             <div class="col-lg-3">
                 <ul>
@@ -142,5 +164,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("ul.menu > li").css("color", "red");
+            $("li ul li.sub").css("color", "blue")
+            $(".sub").hide();
+
+            $("ul.menu li").hover(
+
+                function() {
+                    $(".sub", this).show();
+                }, function() {
+                    $(".sub", this).hide();
+                }
+
+            );
+
+        });
+    </script>
 </body>
 </html>

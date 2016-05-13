@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Category;
 
-class CategoryController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +38,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -13,7 +13,7 @@
                     <div class="panel-body">
 
                         {{ $video->name }}<br>
-                        <a href="/courses/{{ $video->id  }}">bekijken</a><br>
+                        <a href="/course/{{ $video->id  }}">bekijken</a><br>
 
 
                     </div>
