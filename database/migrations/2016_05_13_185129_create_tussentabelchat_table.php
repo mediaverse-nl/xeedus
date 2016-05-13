@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChatmessageTable extends Migration
+class CreateTussentabelchatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateChatmessageTable extends Migration
     public function up()
     {
         //
-        Schema::create('chatmessage', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('tussentabelchat', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('tekst');
-            $table->timestamps();
+            $table->integer('chatbox_id')->unsigned();
+            $table->foreign('chatbox_id')->references('id')->on('chatbox');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateChatmessageTable extends Migration
     public function down()
     {
         //
-        Schema::drop('chatmessage');
+        Schema::drop('tussentabelchat');
     }
 }
