@@ -31,8 +31,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::patch('/profile', ['as' => 'store', 'uses' => 'ProfileController@store']);
         Route::resource('/profile', 'ProfileController');
 
-        Route::get('/courses/{cate}/cate', ['as' => 'upload', 'uses' => 'VideoController@showVideoCate']);
+        Route::get('/courses/{cate}/', ['as' => 'upload', 'uses' => 'VideoController@showVideoCate']);
 
+
+        Route::get('/course/uploaded', ['as' => 'uploaded', 'uses' => 'VideoController@showMyVideos']);
 
         Route::get('/course/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
         Route::get('/course/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);

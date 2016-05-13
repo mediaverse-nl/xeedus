@@ -31,7 +31,9 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('video.create');
+        $category = Category::where('cate_id', '>=', 1)->get();
+
+        return view('video.create')->with('categories', $category);
     }
 
     /**
@@ -52,10 +54,13 @@ class VideoController extends Controller
                 ->withInput();
         }
 
-        $inputs = $request->all();
-        //$this->request->add(['date_of_birth' => )]);
+        $video = new Video;
 
-        Video::Create($inputs);
+        $video->name = $request->name;
+        $video->catogory_id = $request->cate_id;
+        $video->user_id = Auth::user()->id;
+
+        $video->save();
 
         return redirect()->route('course.index');
     }
@@ -76,9 +81,21 @@ class VideoController extends Controller
             ->with('video', $video);
     }
 
+    public function showMyVideos()
+    {
+        $user_id = Auth::user()->id;
+        // get the nerd
+        $video = Video::where('user_id', '=', $user_id)->get();
+
+        // show the view and pass the nerd to it
+        return view('courses.uploaded')
+            ->with('videos', $video);
+    }
+
     public function showVideoCate($cate)
     {
-        $videos = Video::where('catogory_id', '=', $cate)->get();
+        $categories = Category::find($cate);
+        $videos = Video::where('name', '=', $categories)->get();
 
         foreach ($videos as $video) {
            echo $video->name;
@@ -127,7 +144,7 @@ class VideoController extends Controller
             $video->save();
 
             // redirect
-            return redirect('course');
+            return redirect('course/uploaded');
         }
     }
 

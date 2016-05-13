@@ -29,7 +29,9 @@ class CategoryAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $categories = Category::where('cate_id', '=', 0)->get();
+
+        return view('admin.category.create')->with('categories', $categories);
     }
 
     /**
@@ -40,9 +42,13 @@ class CategoryAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = $request->all();
-        //$this->request->add(['date_of_birth' => )])0
-        Category::Create($inputs);
+
+        $category = new Category;
+
+        $category->name = $request->name;
+        $category->cate_id = $request->cate_id;
+
+        $category->save();
 
         return redirect('admin/categories');
     }

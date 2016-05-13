@@ -4,7 +4,7 @@
         <li>{{ $subCate->name }}
             <ul >
                 @foreach($subCate->subCategory as $firstNestedSub)
-                    <li class="sub"><a href="">{{ $firstNestedSub->name }}</a></li>
+                    <li class="sub"><a href="{{ url('courses/'.$firstNestedSub->name.'') }}">{{ $firstNestedSub->name }}</a></li>
                 @endforeach()
             </ul>
         </li>

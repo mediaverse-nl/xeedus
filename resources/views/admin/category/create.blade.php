@@ -19,9 +19,22 @@
                     {!! Form::label('name', 'name') !!}
                     {!! Form::text('name') !!}
 
+                    {!! Form::Label('cate_id', 'cate_id:') !!}
+                    <select class="" name="cate_id">
+                        <option value="0">main</option>
+                        @foreach($categories as $item)
+                            <option value="{{$item->id}}">
+                                    {{$item->name}}
+                            </option>
+                        @endforeach
+                    </select>
+
                     {!! Form::submit('submit')!!}
 
                     {!! Form::close() !!}
+
+                    {!! $categories !!}
+
 
                 </div>
             </div>

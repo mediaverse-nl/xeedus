@@ -89,7 +89,7 @@
                                 <li><a href="{{ url('/products/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Producten</a></li>
 
                                 <!--  //admin -->
-                                <li><a href="{{ url('video') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
+                                <li><a href="{{ url('course/uploaded') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
                                 <li><a href="{{ url('course/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
