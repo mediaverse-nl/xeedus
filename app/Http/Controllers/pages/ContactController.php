@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\pages;
+namespace Xeedus\Http\Controllers\pages;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Xeedus\Http\Requests;
+use Xeedus\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {

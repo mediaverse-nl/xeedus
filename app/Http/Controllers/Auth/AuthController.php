@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Xeedus\Http\Controllers\Auth;
 
-use App\User;
+use Xeedus\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Xeedus\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Auth\ThrottlesLogins;

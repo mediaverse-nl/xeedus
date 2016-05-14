@@ -151,10 +151,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Xeedus\Providers\AppServiceProvider::class,
+        Xeedus\Providers\AuthServiceProvider::class,
+        Xeedus\Providers\EventServiceProvider::class,
+        Xeedus\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
 

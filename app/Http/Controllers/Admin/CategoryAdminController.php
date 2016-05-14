@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Xeedus\Http\Controllers\Admin;
 
-use App\Category;
+use Xeedus\Category;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Xeedus\Http\Requests;
+use Xeedus\Http\Controllers\Controller;
 
 class CategoryAdminController extends Controller
 {

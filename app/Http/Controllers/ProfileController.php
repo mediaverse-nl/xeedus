@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Xeedus\Http\Controllers;
 
-use App\Video;
+use Xeedus\Video;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Xeedus\Http\Requests;
 use Auth;
-use App\User;
+use Xeedus\User;
 
 class ProfileController extends Controller
 {

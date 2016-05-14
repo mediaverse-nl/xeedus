@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Xeedus\Http\Controllers;
 
-use App\Http\Requests;
+use Xeedus\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

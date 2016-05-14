@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace Xeedus\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use \App\Category;
+use \Xeedus\Category;
 
 class AppServiceProvider extends ServiceProvider
 {

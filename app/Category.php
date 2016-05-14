@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Xeedus;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,14 +13,14 @@ class Category extends Model
     ];
 
     public function getCategories(){
-        $categories=\App\Category::where('cate_id',0)->get();//united
+        $categories=\Xeedus\Category::where('cate_id',0)->get();//united
         $categories=$this->addRelation($categories);
         return $categories;
     }
 
     protected function selectChild($id)
     {
-        $categories = \App\Category::where('cate_id',$id)->get(); //rooney
+        $categories = \Xeedus\Category::where('cate_id',$id)->get(); //rooney
         $categories=$this->addRelation($categories);
         return $categories;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Xeedus\Events;
 
 abstract class Event
 {

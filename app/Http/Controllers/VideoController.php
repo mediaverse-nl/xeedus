@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Xeedus\Http\Controllers;
 
-use App\Category;
+use Xeedus\Category;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Video;
+use Xeedus\Video;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Xeedus\Http\Requests;
 
 class VideoController extends Controller
 {
