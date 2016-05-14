@@ -85,7 +85,7 @@ class VideoController extends Controller
     {
         $user_id = Auth::user()->id;
         // get the nerd
-        $video = Video::where('user_id', '=', $user_id)->get();
+        $video = Video::where('user_id', '=', $user_id)->first();
 
         // show the view and pass the nerd to it
         return view('courses.uploaded')
@@ -95,7 +95,7 @@ class VideoController extends Controller
     public function showVideoCate($cate)
     {
         $categories = Category::find($cate);
-        $videos = Video::where('name', '=', $categories)->get();
+        $videos = Video::where('name', '=', $categories)->first();
 
         foreach ($videos as $video) {
            echo $video->name;
