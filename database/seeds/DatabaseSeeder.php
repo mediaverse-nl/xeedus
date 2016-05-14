@@ -27,6 +27,19 @@ class DatabaseSeeder extends Seeder
             ['user_id' => '1',]
         ]);
 
+        DB::table('categories')->insert([
+            ['cate_id' => '0', 'name' => 'main 1',],
+            ['cate_id' => '0', 'name' => 'main 2',],
+            ['cate_id' => '0', 'name' => 'main 3',],
+            ['cate_id' => '1', 'name' => 'sub 1',],
+            ['cate_id' => '1', 'name' => 'sub 2',],
+            ['cate_id' => '2', 'name' => 'sub 1',],
+            ['cate_id' => '2', 'name' => 'sub 2',],
+            ['cate_id' => '3', 'name' => 'sub 1',],
+            ['cate_id' => '3', 'name' => 'sub 2',],
+            ['cate_id' => '3', 'name' => 'sub 3',],
+        ]);
+
         
     }
 }

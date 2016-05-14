@@ -34,7 +34,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['prefix' => 'c'], function () {
             Route::get('/', ['as' => '', function (){ return 'test';}]);
             Route::get('/{cate}', ['as' => '', function (){ return 'test';}]);
-            Route::get('/{cate}/', ['as' => '', function (){ return 'test';}]);
 
             Route::get('/c/{cate}/', ['as' => 'upload', 'uses' => 'VideoController@showVideoCate']);
             Route::get('/course/uploaded', ['as' => 'uploaded', 'uses' => 'VideoController@showMyVideos']);
@@ -53,6 +52,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::patch('/categories', ['as' => 'StoreCategory', 'uses' => 'Admin\CategoryAdminController@store']);
             Route::resource('/categories', 'Admin\CategoryAdminController');
         });
+        
 
     });
 
