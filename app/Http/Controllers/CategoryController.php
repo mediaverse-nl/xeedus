@@ -53,7 +53,7 @@ class CategoryController extends Controller
     {
         $category_id = Category::where('name', str_replace('-', ' ', $cate_name))->get();
 
-        $videos = Category::where('category_id', $category_id)->where();
+        $videos = Category::where('category_id', $category_id)->where('cate_id', '!=', 0);
 
         return view('courses.index')
             ->with('category', $category_id)
