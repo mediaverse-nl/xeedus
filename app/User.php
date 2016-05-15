@@ -32,4 +32,39 @@ class User extends Authenticatable
         return $this->role; // this looks for an admin column in your users table
     }
 
+    public function author()
+    {
+        return $this->hasOne('Xeedus\Author');
+    }
+
+    public function koppeltabelchat()
+    {
+        return $this->hasMany('Xeedus\Koppeltabelchat');
+    }
+
+    public function chatmessage()
+    {
+        return $this->hasMany('Xeedus\Chatmessage');
+    }
+
+    public function order()
+    {
+        return $this->hasMany('Xeedus\Order');
+    }
+
+    public function view()
+    {
+        return $this->hasMany('Xeedus\View');
+    }
+
+    public function beoordeling()
+    {
+        return $this->hasMany('Xeedus\Beoordeling');
+    }
+
+    public function review()
+    {
+        return $this->hasMany('Xeedus\Review');
+    }
+
 }

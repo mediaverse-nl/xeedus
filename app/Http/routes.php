@@ -13,7 +13,8 @@
 Route::group(['middleware' => ['web']], function () {
 
     Route::auth();
-    
+
+    Route::get('order', ['as' => 'order', 'uses' => 'OrderController@index']);
     Route::get('/', 'HomeController@index');
     Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
     Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
