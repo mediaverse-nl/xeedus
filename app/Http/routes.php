@@ -16,12 +16,11 @@ Route::group(['middleware' => ['web']], function () {
     
     Route::get('/', 'HomeController@index');
     Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
-    Route::get('courses', ['as' => 'courses', 'uses' => 'VideoController@index']);
     Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
-
-    Route::get('support', function(){
-        return 'support';
-    });
+    Route::get('support', function(){return 'support';});
+    Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
+    Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
+    Route::get('video/{video}', ['as' => 'video', function ($video){ return 'video'.$video;}]);
 
     //must be loggedin
     Route::group(['middleware' => 'auth'], function () {
@@ -30,18 +29,6 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/edit', ['as' => 'profile_edit', 'uses' => 'ProfileController@edit']);
             Route::patch('/', ['as' => 'profile_store', 'uses' => 'ProfileController@store']);
             Route::resource('/', 'ProfileController');
-        });
-        Route::group(['prefix' => 'c'], function () {
-            Route::get('/', ['as' => '', function (){ return 'test';}]);
-            Route::get('/{cate}', ['as' => '', function (){ return 'test';}]);
-
-            Route::get('/c/{cate}/', ['as' => 'upload', 'uses' => 'VideoController@showVideoCate']);
-            Route::get('/course/uploaded', ['as' => 'uploaded', 'uses' => 'VideoController@showMyVideos']);
-            Route::get('/course/upload', ['as' => 'upload', 'uses' => 'VideoController@create']);
-            Route::get('/course/{id}/edit', ['as' => 'edit', 'uses' => 'VideoController@edit']);
-            Route::get('/course/{id}', ['as' => 'show', 'uses' => 'VideoController@show']);
-            Route::patch('/course', ['as' => 'store', 'uses' => 'VideoController@store']);
-            Route::resource('/course', 'VideoController');
         });
         Route::group(array(['middleware' => 'admin'], 'prefix' => 'admin' ), function () {
             //routing for admin use
@@ -52,7 +39,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::patch('/categories', ['as' => 'StoreCategory', 'uses' => 'Admin\CategoryAdminController@store']);
             Route::resource('/categories', 'Admin\CategoryAdminController');
         });
-        
+
 
     });
 

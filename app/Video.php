@@ -12,8 +12,8 @@ class Video extends Model
 
     protected $table = 'videos';
 
-    public function video(){
-        return $this->belongsTo('Video');
+    public function category()
+    {
+        return $this->belongsTo('Xeedus\Category');
     }
-    
 }

@@ -13,9 +13,9 @@
                     <div class="panel-heading">my courses</div>
 
                     <div class="panel-body">
-                        @foreach($videos as $video)
-                            {{$video->name}}<br>
-                            <a href="/course/{{ $video->id  }}/edit">edit</a><br><br>
+                        @foreach($videos as $vid)
+                            {{$vid->name}}<br>
+                            <a href="/course/{{ $video->id  }}/edit">{{ $video->id  }}</a><br><br>
                         @endforeach
                     </div>
                 </div>

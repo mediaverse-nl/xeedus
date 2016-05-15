@@ -32,4 +32,9 @@ class Category extends Model
         return $categories;
     }
     public $timestamps = false;
+
+    public function video()
+    {
+        return $this->hasMany('Xeedus\Video');
+    }
 }
