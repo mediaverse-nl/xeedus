@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
+    protected $table = 'videos';
+
     protected $fillable = [
         'name', 'created_at', 'updated_at',
     ];
-
-    protected $table = 'videos';
 
     public function category()
     {

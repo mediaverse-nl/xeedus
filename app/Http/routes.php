@@ -12,7 +12,7 @@
 */
 Route::group(['middleware' => ['web']], function () {
 
-    Route::auth();
+    Route::auth(); 
 
     Route::get('order', ['as' => 'order', 'uses' => 'OrderController@index']);
     Route::get('/', 'HomeController@index');

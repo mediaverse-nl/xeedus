@@ -45,6 +45,13 @@ class DatabaseSeeder extends Seeder
             ['name' => 'GTA video', 'category_id' => 3,],
             ['name' => 'the sims video', 'category_id' => 3,]
         ]);
-        
+
+        DB::table('order')->insert([
+            ['user_id' => 1, 'video_id' => 1,],
+            ['user_id' => 1, 'video_id' => 3,],
+            ['user_id' => 1, 'video_id' => 4,],
+            ['user_id' => 2, 'video_id' => 4,],
+            ['user_id' => 2, 'video_id' => 2,],
+        ]);
     }
 }
