@@ -71,10 +71,10 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($video_key)
     {
         // get the nerd
-        $video = Video::find($id);
+        $video = Video::where('video_key', $video_key)->first();
 
         // show the view and pass the nerd to it
         return view('video.show')

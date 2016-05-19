@@ -37,13 +37,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('videos')->insert([
-            ['name' => 'katten video', 'category_id' => '1',],
-            ['name' => 'honden video', 'category_id' => 1,],
-            ['name' => 'golf video', 'category_id' => 2,],
-            ['name' => 'voetbal video', 'category_id' => 2,],
-            ['name' => 'battlefield video', 'category_id' => 3,],
-            ['name' => 'GTA video', 'category_id' => 3,],
-            ['name' => 'the sims video', 'category_id' => 3,]
+            ['name' => 'katten video', 'category_id' => 1, 'video_key' => str_random(10),],
+            ['name' => 'honden video', 'category_id' => 1, 'video_key' => str_random(10),],
+            ['name' => 'golf video', 'category_id' => 2, 'video_key' => str_random(10),],
+            ['name' => 'voetbal video', 'category_id' => 2, 'video_key' => str_random(10),],
+            ['name' => 'battlefield video', 'category_id' => 3, 'video_key' => str_random(10),],
+            ['name' => 'GTA video', 'category_id' => 3, 'video_key' => str_random(10),],
+            ['name' => 'the sims video', 'category_id' => 3, 'video_key' => str_random(10),]
         ]);
 
         DB::table('order')->insert([

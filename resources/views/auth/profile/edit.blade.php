@@ -11,7 +11,7 @@
 
                     @include('common.errors')
 
-                    {{ Form::model(array('route' => array('profile.update'), 'method' => 'PUT')) }}
+                    {{ Form::open(array('method' => 'PUT', 'url' => array('profile'))) }}
 
                     {!! Form::label('voornaam', 'naam') !!}
                     {!! Form::text('voornaam', Auth::user()->voornaam) !!}

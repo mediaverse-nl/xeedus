@@ -14,23 +14,25 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::auth(); 
 
-    Route::get('order', ['as' => 'order', 'uses' => 'OrderController@index']);
+    Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
+    Route::get('video/{video_key}', ['as' => 'video', 'uses' => 'VideoController@show']);
+    
     Route::get('/', 'HomeController@index');
     Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
     Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
     Route::get('support', function(){return 'support';});
     Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
     Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
-    Route::get('video/{video}', ['as' => 'video', function ($video){ return 'video'.$video;}]);
+
+    Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@index']);
+    Route::get('/profile/edit', ['as' => 'profile_edit', 'uses' => 'UserController@edit']);
+    Route::patch('/profile', ['as' => 'profile_store', 'uses' => 'UserController@update']);
+    Route::resource('/profile', 'UserController');
 
     //must be loggedin
     Route::group(['middleware' => 'auth'], function () {
-        Route::group(['prefix' => 'profile'], function () {
-            Route::get('/', ['as' => 'profile', 'uses' => 'ProfileController@index']);
-            Route::get('/edit', ['as' => 'profile_edit', 'uses' => 'ProfileController@edit']);
-            Route::patch('/', ['as' => 'profile_store', 'uses' => 'ProfileController@store']);
-            Route::resource('/', 'ProfileController');
-        });
+
+
         Route::group(array(['middleware' => 'admin'], 'prefix' => 'admin' ), function () {
             //routing for admin use
             Route::get('/', ['as' => 'dashboard', 'uses' => 'Admin\AdminController@index']);

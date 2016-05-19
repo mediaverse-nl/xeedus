@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    upload
+    video page
 @stop
 
 @section('content')
@@ -12,9 +12,10 @@
                     <div class="panel-heading">video</div>
                     <div class="panel-body">
 
-                        {{ $video->name }}<br>
-                        <a href="/course/{{ $video->id  }}">bekijken</a><br>
+                        {{ $video->name }}
+                        <div style="height: 230px; width: 340px; border: 1px solid #333;">
 
+                        </div>
 
                     </div>
                 </div>

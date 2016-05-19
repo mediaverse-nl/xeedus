@@ -48,7 +48,6 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/contact') }}">Contact</a></li>
                     <li class="dropdown dropdown-large">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 
@@ -118,15 +117,6 @@
                         <li><a href="{{ url('/') }}">Twitter</a></li>
                         <li><a href="{{ url('/') }}">Google+</a></li>
                         <li><a href="{{ url('/') }}">Facebook</a></li>
-                    </ul>
-                </ul>
-            </div>
-
-            <div class="col-lg-3">
-                <ul>
-                    <li><h2>Contact Us</h2></li>
-                    <ul>
-                        <li><a href="{{ url('/contact') }}">contact</a></li>
                     </ul>
                 </ul>
             </div>

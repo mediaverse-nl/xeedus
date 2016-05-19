@@ -2,15 +2,15 @@
 
 namespace Xeedus\Http\Controllers;
 
+use Validator;
+use Auth;
 use Illuminate\Http\Request;
+use Xeedus\User;
 
 use Xeedus\Http\Requests;
-use Xeedus\Order;
-use Auth;
 
-class OrderController extends Controller
+class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-        $order =  Order::where('user_id', Auth::user()->id)->get();
-
-        return view('video.index')->with('orders', $order);
+        return view('auth.profile.show');
     }
 
     /**
@@ -57,14 +54,14 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function edit()
     {
-        //
+        return view('auth.profile.edit');
     }
 
     /**
@@ -74,9 +71,26 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $validator = Validator::make($request->all(), [
+            'voornaam' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('profile/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        // store
+        $user = User::find(Auth::user());
+        $user->voornaam = $request->voornaam;
+        $user->save();
+
+        // redirect
+        return redirect('profile');
     }
 
     /**

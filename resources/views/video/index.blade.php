@@ -13,10 +13,9 @@
 
                     <div class="panel-body">
 
-                        @foreach($videos as $video)
-                            {{ $video->name }}<br>
-                            <a href="/course/{{ $video->id  }}">bekijken</a><br>
-                            <hr>
+                        @foreach($orders as $order)
+                            <a href="{{url('video/'.$order->video->video_key)}}">{{$order->video->name}}</a>
+                            <br><br>
                         @endforeach
 
                     </div>
