@@ -84,15 +84,17 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-header">User menu</li>
                                 <li><a href="{{ url('/profile') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Profiel</a></li>
                                 <li><a href="{{ url('/products/') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn Producten</a></li>
-
+                                <li role="separator" class="divider"></li>
                                 <!--  //admin -->
-                                <li><a href="{{ url('course/uploaded') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
+                                <li class="dropdown-header">Author menu</li>
+                                <li><a href="{{ url('profile/courses') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
                                 <li><a href="{{ url('course/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
-
+                                <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

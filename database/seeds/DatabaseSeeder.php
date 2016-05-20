@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         DB::table('users')->insert([
-            ['username' => 'bert', 'voornaam' => 'bert', 'email' => 'bleh@gmail.com', 'password' => bcrypt('admin'),],
-            ['username' => 'admin', 'voornaam' => 'deveron', 'email' => 'admin@mail.com', 'password' => bcrypt('admin'),]
+            ['username' => 'bert', 'voornaam' => 'bert', 'email' => 'bleh@gmail.com', 'password' => bcrypt('admin'), 'role' => 'admin',],
+            ['username' => 'admin', 'voornaam' => 'deveron', 'email' => 'admin@mail.com', 'password' => bcrypt('admin'), 'role' => 'admin',],
+            ['username' => 'willy', 'voornaam' => 'willy', 'email' => 'user@mail.com', 'password' => bcrypt('admin'), 'role' => 'user',]
         ]);
 
         DB::table('chatmessage')->insert([
@@ -37,13 +38,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('videos')->insert([
-            ['name' => 'katten video', 'category_id' => 1, 'video_key' => str_random(10),],
-            ['name' => 'honden video', 'category_id' => 1, 'video_key' => str_random(10),],
-            ['name' => 'golf video', 'category_id' => 2, 'video_key' => str_random(10),],
-            ['name' => 'voetbal video', 'category_id' => 2, 'video_key' => str_random(10),],
-            ['name' => 'battlefield video', 'category_id' => 3, 'video_key' => str_random(10),],
-            ['name' => 'GTA video', 'category_id' => 3, 'video_key' => str_random(10),],
-            ['name' => 'the sims video', 'category_id' => 3, 'video_key' => str_random(10),]
+            ['name' => 'katten video', 'category_id' => 1, 'video_key' => str_random(10), 'author_id' => 1,],
+            ['name' => 'honden video', 'category_id' => 1, 'video_key' => str_random(10), 'author_id' => 1,],
+            ['name' => 'golf video', 'category_id' => 2, 'video_key' => str_random(10), 'author_id' => 2,],
+            ['name' => 'voetbal video', 'category_id' => 2, 'video_key' => str_random(10), 'author_id' => 2,],
+            ['name' => 'battlefield video', 'category_id' => 3, 'video_key' => str_random(10), 'author_id' => 1,],
+            ['name' => 'GTA video', 'category_id' => 3, 'video_key' => str_random(10), 'author_id' => 2,],
+            ['name' => 'the sims video', 'category_id' => 3, 'video_key' => str_random(10), 'author_id' => 1,]
         ]);
 
         DB::table('order')->insert([
@@ -52,6 +53,11 @@ class DatabaseSeeder extends Seeder
             ['user_id' => 1, 'video_id' => 4,],
             ['user_id' => 2, 'video_id' => 4,],
             ['user_id' => 2, 'video_id' => 2,],
+        ]);
+
+        DB::table('author')->insert([
+            ['user_id' => 1, 'biography' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],
+            ['user_id' => 2, 'biography' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],
         ]);
     }
 }

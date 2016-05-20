@@ -17,6 +17,11 @@ class Video extends Model
         return $this->belongsTo('Xeedus\Category');
     }
 
+    public function author()
+    {
+        return $this->belongsTo('Xeedus\Author');
+    }
+
     public function order()
     {
         return $this->hasMany('Xeedus\Order');

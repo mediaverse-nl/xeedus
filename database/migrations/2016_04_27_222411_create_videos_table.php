@@ -14,14 +14,13 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('author_id')->unsigned();
+            $table->foreign('author_id')->references('id')->on('author');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name');
             $table->string('video_key');
             $table->string('thumbnail');
-            $table->string('tietel');
             $table->string('beschrijving');
             $table->string('prijs');
             $table->string('level');

@@ -2,7 +2,9 @@
 
 namespace Xeedus\Http\Controllers;
 
+use Xeedus\User;
 use Xeedus\Category;
+use Xeedus\Author;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Xeedus\Video;
@@ -58,7 +60,7 @@ class VideoController extends Controller
 
         $video->name = $request->name;
         $video->catogory_id = $request->cate_id;
-        $video->user_id = Auth::user()->id;
+        $video->user_id = Author::where('user_id', Auth::user()->id)->get();
 
         $video->save();
 
@@ -83,13 +85,11 @@ class VideoController extends Controller
 
     public function showMyVideos()
     {
-        $user_id = Auth::user()->id;
-        // get the nerd
-        $video = Video::where('user_id', '=', $user_id)->first();
+        $user = Author::where('user_id', Auth::user()->id)->first();
 
         // show the view and pass the nerd to it
-        return view('courses.uploaded')
-            ->with('videos', $video);
+        return view('courses.showmyvideos')
+            ->with('users', $user);
     }
 
     public function showVideoCate($cate)
@@ -114,7 +114,7 @@ class VideoController extends Controller
         $video = Video::find($id);
 
         // show the edit form and pass the nerd
-        return view('video.edit')
+        return view('courses.edit')
             ->with('video', $video);
     }
 
@@ -131,10 +131,14 @@ class VideoController extends Controller
         // read more on validation at http://laravel.com/docs/validation
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
+            'thumbnail' => 'max:255',
+            'beschrijving' => 'max:255',
+            'level' => 'max:255',
+            'status' => 'max:255',
         ]);
 
         if ($validator->fails()) {
-            return redirect('course/' . $id . '/edit')
+            return redirect('profile/courses/' . $id . '')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -142,10 +146,14 @@ class VideoController extends Controller
         // store
         $video = Video::find($id);
         $video->name = $request->name;
+        $video->thumbnail = $request->thumbnail;
+        $video->beschrijving = $request->beschrijving;
+        $video->level = $request->level;
+        $video->status = $request->status;
         $video->save();
 
         // redirect
-        return redirect('course/uploaded');
+        return redirect('profile/courses/');
 
     }
 

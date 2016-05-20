@@ -16,11 +16,17 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
     Route::get('video/{video_key}', ['as' => 'video', 'uses' => 'VideoController@show']);
-    
+
+    Route::get('profile/courses', ['as' => 'course', 'uses' => 'VideoController@showMyVideos']);
+    Route::get('profile/courses/{id}', ['as' => 'course', 'uses' => 'VideoController@edit']);
+    Route::patch('profile/courses/{id}', ['as' => 'course', 'uses' => 'VideoController@update']);
+    Route::resource('profile/courses', 'VideoController');
+
     Route::get('/', 'HomeController@index');
     Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
     Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
     Route::get('support', function(){return 'support';});
+
     Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
     Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
 
@@ -31,7 +37,6 @@ Route::group(['middleware' => ['web']], function () {
 
     //must be loggedin
     Route::group(['middleware' => 'auth'], function () {
-
 
         Route::group(array(['middleware' => 'admin'], 'prefix' => 'admin' ), function () {
             //routing for admin use

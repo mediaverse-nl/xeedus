@@ -13,10 +13,13 @@
                     <div class="panel-heading">my courses</div>
 
                     <div class="panel-body">
-                        @foreach($videos as $vid)
-                            {{$vid->name}}<br>
-                            <a href="/course/{{ $video->id  }}/edit">{{ $video->id  }}</a><br><br>
+
+                        @foreach($users->video as $video)
+                            {{$video->name}}
+                            <a href="{{url('profile/courses/'. $video->id)}}">edit</a>
+                            <br>
                         @endforeach
+
                     </div>
                 </div>
             </div>
