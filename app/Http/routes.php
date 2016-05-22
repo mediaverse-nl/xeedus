@@ -17,6 +17,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
     Route::get('video/{video_key}', ['as' => 'video', 'uses' => 'VideoController@show']);
 
+
+    Route::get('', []);
+
     Route::get('profile/courses', ['as' => 'course', 'uses' => 'VideoController@showMyVideos']);
     Route::get('profile/courses/{id}', ['as' => 'course', 'uses' => 'VideoController@edit']);
     Route::patch('profile/courses/{id}', ['as' => 'course', 'uses' => 'VideoController@update']);

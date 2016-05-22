@@ -95,7 +95,7 @@
                                 <li><a href="{{ url('course/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits</a></li>
+                                <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits <span class="pull-right">({{ Auth::user()->credits }})</span></a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
 

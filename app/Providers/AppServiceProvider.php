@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
         $allSubCategories = $subcate -> getCategories();
 
         view()->share('allSubCategories', $allSubCategories);
+
     }
 
     /**
