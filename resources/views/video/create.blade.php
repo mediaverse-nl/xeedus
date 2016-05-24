@@ -14,18 +14,20 @@
 
                         @include('common.errors')
 
-                        {!! Form::open(['route' => 'course.store']) !!}
+                        {!! Form::open(['route' => 'video_create']) !!}
 
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}
 
                         {!! Form::Label('cate_id', 'cate_id:') !!}
+
                         <select class="" name="cate_id">
-                            <option value="0">main</option>
                             @foreach($categories as $item)
-                                <option value="{{$item->id}}">
-                                    {{$item->name}}
-                                </option>
+                                @if($item->cate_id != 0)
+                                    <option value="{{$item->id}}">
+                                        {{$item->name}}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
 

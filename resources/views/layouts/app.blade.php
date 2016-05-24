@@ -92,7 +92,7 @@
                                 <li class="dropdown-header">Author menu</li>
                                 <li><a href="{{ url('profile/courses') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
-                                <li><a href="{{ url('course/upload/') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
+                                <li><a href="{{ url('video/create') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits <span class="pull-right">({{ Auth::user()->credits }})</span></a></li>

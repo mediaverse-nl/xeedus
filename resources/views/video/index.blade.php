@@ -13,10 +13,7 @@
 
                     <div class="panel-body">
 
-                        @foreach($orders as $order)
-                            <a href="{{url('video/'.$order->video->video_key)}}">{{$order->video->name}}</a>
-                            <br><br>
-                        @endforeach
+
 
                     </div>
                 </div>

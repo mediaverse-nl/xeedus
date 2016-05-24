@@ -8,11 +8,21 @@
                 <div class="panel-heading">Profile</div>
 
                 <div class="panel-body">
-                    <h1>{{ Auth::user()->name }}</h1>
+                    {{Session::get('message')}}
                     <p>{{ Auth::user()->email }}</p>
+                    <p>{{ Auth::user()->voornaam }}</p>
+                    <p>{{ Auth::user()->tussenvoegsel }}</p>
+                    <p>{{ Auth::user()->achternaam }}</p>
+                    <p>{{ Auth::user()->geslacht }}</p>
+                    <p>{{ Auth::user()->land }}</p>
+                    <p>{{ Auth::user()->stad }}</p>
+                    <p>{{ Auth::user()->postcode }}</p>
+                    <p>{{ Auth::user()->straatnaam }}</p>
+                    <p>{{ Auth::user()->huisnummer }}</p>
+                    <a href="/profile/edit" class="btn btn-default">edit profile</a>
                 </div>
             </div>
-            <a href="/profile/edit" class="btn btn-default">edit profile</a>
+
         </div>
     </div>
 </div>

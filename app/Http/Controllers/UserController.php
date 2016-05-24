@@ -3,9 +3,9 @@
 namespace Xeedus\Http\Controllers;
 
 use Validator;
-use Auth;
-use Illuminate\Http\Request;
 use Xeedus\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 use Xeedus\Http\Requests;
 
@@ -48,9 +48,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        //$user = User::find(1);
+        $message = $request->session()->get('message');
+        return view('auth.profile.show')->with('message', $message);
     }
 
     /**
@@ -73,10 +75,8 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
         $validator = Validator::make($request->all(), [
-            'voornaam' => 'required|max:255',
+            'voornaam' => 'max:255',
         ]);
 
         if ($validator->fails()) {
@@ -84,13 +84,24 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        // store
-        $user = User::find(Auth::user());
+
+        $user = User::find(Auth::user()->id);
+
         $user->voornaam = $request->voornaam;
+        $user->achternaam = $request->achternaam;
+        $user->tussenvoegsel = $request->tussenvoegsel;
+        $user->geslacht = $request->geslacht;
+        $user->land = $request->land;
+        $user->stad = $request->stad;
+        $user->postcode = $request->postcode;
+        $user->straatnaam = $request->straatnaam;
+        $user->huisnummer = $request->huisnummer;
+
         $user->save();
 
-        // redirect
-        return redirect('profile');
+        $request->session()->put('message', 'met succes geupdate');
+
+        return redirect('/profile');
     }
 
     /**

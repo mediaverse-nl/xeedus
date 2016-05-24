@@ -12,18 +12,33 @@
 */
 Route::group(['middleware' => ['web']], function () {
 
-    Route::auth(); 
+    Route::auth();
 
-    Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
-    Route::get('video/{video_key}', ['as' => 'video', 'uses' => 'VideoController@show']);
+    //must be loggedin
+    Route::group(['middleware' => 'auth'], function () {
+
+        Route::post('/profile', ['as' => 'profile_update', 'uses' => 'UserController@update']);
+        Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@show']);
+        Route::get('/profile/edit', ['as' => 'profile_edit', 'uses' => 'UserController@edit']);
+        Route::resource('/profile', 'UserController', [
+            'except' => ['create', 'store', 'update', 'destroy']
+        ]);
+    });
+
+    //Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
+
+    Route::post('/video', ['as' => 'video_update', 'uses' => 'VideoController@update']);
+    Route::post('/video', ['as' => 'video_store', 'uses' => 'VideoController@store']);
+    Route::get('/video', ['as' => 'video_all', 'uses' => 'VideoController@index']);
+    Route::get('/video/create', ['as' => 'video_create', 'uses' => 'VideoController@create']);
+    Route::get('/video/{video_key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
+    Route::get('/video/{video_key}/edit', ['as' => 'video_edit', 'uses' => 'VideoController@edit']);
+    Route::resource('/video', 'VideoController', [
+        'except' => ['create', 'store', 'update', 'destroy']
+    ]);
 
 
-    Route::get('', []);
 
-    Route::get('profile/courses', ['as' => 'course', 'uses' => 'VideoController@showMyVideos']);
-    Route::get('profile/courses/{id}', ['as' => 'course', 'uses' => 'VideoController@edit']);
-    Route::patch('profile/courses/{id}', ['as' => 'course', 'uses' => 'VideoController@update']);
-    Route::resource('profile/courses', 'VideoController');
 
     Route::get('/', 'HomeController@index');
     Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
@@ -33,26 +48,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
     Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
 
-    Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@index']);
-    Route::get('/profile/edit', ['as' => 'profile_edit', 'uses' => 'UserController@edit']);
-    Route::patch('/profile', ['as' => 'profile_store', 'uses' => 'UserController@update']);
-    Route::resource('/profile', 'UserController');
-
-    //must be loggedin
-    Route::group(['middleware' => 'auth'], function () {
-
-        Route::group(array(['middleware' => 'admin'], 'prefix' => 'admin' ), function () {
-            //routing for admin use
-            Route::get('/', ['as' => 'dashboard', 'uses' => 'Admin\AdminController@index']);
-            //routing for admin category use
-            Route::get('/categories', ['as' => 'AdminCategory', 'uses' => 'Admin\CategoryAdminController@index']);
-            Route::get('/categories/create', ['as' => 'categories', 'uses' => 'Admin\CategoryAdminController@create']);
-            Route::patch('/categories', ['as' => 'StoreCategory', 'uses' => 'Admin\CategoryAdminController@store']);
-            Route::resource('/categories', 'Admin\CategoryAdminController');
-        });
 
 
-    });
 
 });
 
