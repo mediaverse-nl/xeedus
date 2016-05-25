@@ -90,7 +90,7 @@
                                 <li role="separator" class="divider"></li>
                                 <!--  //admin -->
                                 <li class="dropdown-header">Author menu</li>
-                                <li><a href="{{ url('profile/courses') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
+                                <li><a href="{{ url('video') }}"><i class="fa fa-btn fa-sign-out"></i>Mijn videos</a></li>
                                 <!-- <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Mijn stream</a></li>-->
                                 <li><a href="{{ url('video/create') }}"><i class="fa fa-btn fa-sign-out"></i>Upload</a></li>
 

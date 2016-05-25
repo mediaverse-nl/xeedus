@@ -19,6 +19,7 @@
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}
 
+                        <br>
                         {!! Form::Label('cate_id', 'cate_id:') !!}
 
                         <select class="" name="cate_id">
@@ -30,6 +31,11 @@
                                 @endif
                             @endforeach
                         </select>
+                        <br>
+
+                        {!! Form::label('Product Image') !!}
+                        {!! Form::file('image', null) !!}
+                        <br>
 
                         {!! Form::submit('submit') !!}
 

@@ -2,6 +2,7 @@
 
 namespace Xeedus\Http\Controllers;
 
+use DB;
 use Xeedus\User;
 use Xeedus\Category;
 use Xeedus\Author;
@@ -21,7 +22,10 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::all();
+        $videos = DB::table('videos')
+            ->join('author', 'author.id', '=', 'videos.author_id')
+            ->where('user_id', Auth::user()->id)
+            ->get();
 
         return view('video.index')->with('videos', $videos);
     }
@@ -51,7 +55,7 @@ class VideoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('course/upload')
+            return redirect('sdd')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -112,10 +116,12 @@ class VideoController extends Controller
     {
         // get the nerd
         $video = Video::find($id);
+        $category = Category::where('cate_id', '>=', 1)->get();
 
         // show the edit form and pass the nerd
-        return view('courses.edit')
-            ->with('video', $video);
+        return view('video.edit')
+            ->with('video', $video)
+            ->with('categories', $category);;
     }
 
     /**
@@ -125,12 +131,12 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $video_key)
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'name' => 'max:255',
             'thumbnail' => 'max:255',
             'beschrijving' => 'max:255',
             'level' => 'max:255',
@@ -138,7 +144,7 @@ class VideoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('profile/courses/' . $id . '')
+            return redirect('video/' . $id . '/edit')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -153,7 +159,7 @@ class VideoController extends Controller
         $video->save();
 
         // redirect
-        return redirect('profile/courses/');
+        return redirect('video/'.$video->video_key);
 
     }
 

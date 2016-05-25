@@ -13,7 +13,12 @@
 
                     <div class="panel-body">
 
+                        @foreach($videos as $video)
 
+                            {{$video->name}}
+                            <a href="{{ url('/video/'.$video->video_key.'/edit') }}">edit</a>
+                            <br>
+                        @endforeach
 
                     </div>
                 </div>
