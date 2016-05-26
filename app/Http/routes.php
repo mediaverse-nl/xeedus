@@ -23,19 +23,23 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('/profile', 'UserController', [
             'except' => ['create', 'store', 'update', 'destroy']
         ]);
+
+        Route::post('/video', ['as' => 'video_store', 'uses' => 'VideoController@store']);
+        Route::patch('/video', ['as' => 'video_update', 'uses' => 'VideoController@update']);
+
+        Route::get('/video', ['as' => 'video_all', 'uses' => 'VideoController@index']);
+        Route::get('/video/create', ['as' => 'video_create', 'uses' => 'VideoController@create']);
+        Route::get('/video/{video_key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
+        Route::get('/video/{video_key}/edit', ['as' => 'video_edit', 'uses' => 'VideoController@edit']);
+        Route::resource('/video', 'VideoController', [
+            'except' => ['create', 'store', 'update', 'destroy']
+        ]);
+
     });
 
     //Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
 
-    Route::post('/video', ['as' => 'video_store', 'uses' => 'VideoController@store']);
-    Route::post('/video', ['as' => 'video_update', 'uses' => 'VideoController@update']);
-    Route::get('/video', ['as' => 'video_all', 'uses' => 'VideoController@index']);
-    Route::get('/video/create', ['as' => 'video_create', 'uses' => 'VideoController@create']);
-    Route::get('/video/{video_key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
-    Route::get('/video/{video_key}/edit', ['as' => 'video_edit', 'uses' => 'VideoController@edit']);
-    Route::resource('/video', 'VideoController', [
-        'except' => ['create', 'store', 'update', 'destroy']
-    ]);
+
 
 
 

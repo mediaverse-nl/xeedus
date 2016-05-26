@@ -3,12 +3,12 @@
 namespace Xeedus\Http\Controllers;
 
 use DB;
-use Xeedus\User;
+use Xeedus\Video;
 use Xeedus\Category;
 use Xeedus\Author;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use Xeedus\Video;
+
 use Illuminate\Http\Request;
 
 use Xeedus\Http\Requests;
@@ -60,15 +60,17 @@ class VideoController extends Controller
                 ->withInput();
         }
 
+        $author = Author::where('user_id', Auth::user()->id)->first();
         $video = new Video;
 
+        $video->author_id = $author->id;
         $video->name = $request->name;
-        $video->catogory_id = $request->cate_id;
-        $video->user_id = Author::where('user_id', Auth::user()->id)->get();
+        $video->category_id = $request->cate_id;
+        $video->video_key = str_random(10);
 
         $video->save();
 
-        return redirect()->route('course.index');
+        return redirect('video');
     }
 
     /**
@@ -115,13 +117,13 @@ class VideoController extends Controller
     public function edit($id)
     {
         // get the nerd
-        $video = Video::find($id);
+        $video = Video::where('video_key',$id)->first();
         $category = Category::where('cate_id', '>=', 1)->get();
 
         // show the edit form and pass the nerd
         return view('video.edit')
             ->with('video', $video)
-            ->with('categories', $category);;
+            ->with('categories', $category);
     }
 
     /**
@@ -131,7 +133,7 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $video_key)
+    public function update(Request $request)
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation
@@ -144,13 +146,13 @@ class VideoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('video/' . $id . '/edit')
+            return redirect('video/' . $request->video_key . '/edit')
                 ->withErrors($validator)
                 ->withInput();
         }
 
         // store
-        $video = Video::find($id);
+        $video = Video::where('video_key', $request->video_key)->first();
         $video->name = $request->name;
         $video->thumbnail = $request->thumbnail;
         $video->beschrijving = $request->beschrijving;
@@ -159,7 +161,7 @@ class VideoController extends Controller
         $video->save();
 
         // redirect
-        return redirect('video/'.$video->video_key);
+        return redirect('/video/'.$video->video_key);
 
     }
 

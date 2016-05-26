@@ -14,7 +14,9 @@
 
                         @include('common.errors')
 
-                        {{ Form::open( array('method' => 'PUT', 'action' => array('VideoController@update', $video->id ) ) ) }}
+                        {{ Form::open(['route' => 'video_update']) }}
+
+                        {{ Form::hidden('video_key', $video->video_key) }}
 
                         <div class="form-group">
                             {{ Form::label('name', 'Name') }}
