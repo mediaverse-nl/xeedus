@@ -51,11 +51,11 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'name' => 'max:255',
         ]);
 
         if ($validator->fails()) {
-            return redirect('sdd')
+            return redirect('dd')
                 ->withErrors($validator)
                 ->withInput();
         }

@@ -17,15 +17,16 @@ Route::group(['middleware' => ['web']], function () {
     //must be loggedin
     Route::group(['middleware' => 'auth'], function () {
 
-        Route::post('/profile', ['as' => 'profile_update', 'uses' => 'UserController@update']);
+        Route::post('/profile', ['as' => 'profile.update', 'uses' => 'UserController@update']);
         Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@show']);
         Route::get('/profile/edit', ['as' => 'profile_edit', 'uses' => 'UserController@edit']);
         Route::resource('/profile', 'UserController', [
             'except' => ['create', 'store', 'update', 'destroy']
         ]);
 
+        Route::patch('/video', ['as' => 'video.update', 'uses' => 'VideoController@update']);
         Route::post('/video', ['as' => 'video_store', 'uses' => 'VideoController@store']);
-        Route::patch('/video', ['as' => 'video_update', 'uses' => 'VideoController@update']);
+
 
         Route::get('/video', ['as' => 'video_all', 'uses' => 'VideoController@index']);
         Route::get('/video/create', ['as' => 'video_create', 'uses' => 'VideoController@create']);

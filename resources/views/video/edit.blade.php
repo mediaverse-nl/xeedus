@@ -14,7 +14,7 @@
 
                         @include('common.errors')
 
-                        {{ Form::open(['route' => 'video_update']) }}
+                        {{ Form::open(['route' => 'video.update']) }}
 
                         {{ Form::hidden('video_key', $video->video_key) }}
 
@@ -38,16 +38,32 @@
 
                         <div class="form-group">
                             {{ Form::label('level', 'level') }}<br>
+
                             {{ Form::label('level', '1') }}
-                            {{ Form::radio('level', '1') }}<br>
+                            @if($video->level == 1)
+                                {{ Form::radio('level', '1', true) }}<br>
+                            @else
+                                {{ Form::radio('level', '1') }}<br>
+                            @endif
+
                             {{ Form::label('level', '2') }}
-                            {{ Form::radio('level', '2') }}<br>
+                            @if($video->level == 2)
+                                {{ Form::radio('level', '2', true) }}<br>
+                            @else
+                                {{ Form::radio('level', '2') }}<br>
+                            @endif
+
                             {{ Form::label('level', '3') }}
-                            {{ Form::radio('level', '3') }}<br>
+                            @if($video->level == 3)
+                                {{ Form::radio('level', '3', true) }}<br>
+                            @else
+                                {{ Form::radio('level', '3') }}<br>
+                            @endif
+
                         </div>
                         <div class="form-group">
                             {{ Form::label('beschrijving', 'beschrijving') }}
-                            {{ Form::textarea('name', null, array('class' => 'form-control')) }}
+                            {{ Form::textarea('name', $video->beschrijving, array('class' => 'form-control')) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('thumbnail', 'thumbnail') }}
