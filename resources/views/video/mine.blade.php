@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title')
@@ -13,8 +12,12 @@
                     <div class="panel-heading">videos</div>
 
                     <div class="panel-body">
-                        @foreach($orders as $video)
-                            <a href="{{ url('/video/'.$video->video_key) }}">{{$video->name}}</a> bekijken
+
+                        @foreach($videos as $video)
+
+                            {{$video->name}}
+                            <a href="{{ url('/video/'.$video->video_key.'') }}">bekijken</a>
+
                             <br>
                         @endforeach
 

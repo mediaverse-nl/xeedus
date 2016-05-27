@@ -4,6 +4,7 @@ namespace Xeedus\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use Xeedus\Http\Requests;
 use Xeedus\Order;
 use Auth;
@@ -19,9 +20,12 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $order =  Order::where('user_id', Auth::user()->id)->get();
+        $order =  DB::table('order')
+            ->join('videos', 'order.video_id', '=', 'videos.id')
+            ->where('order.user_id', Auth::user()->id)
+            ->get();
 
-        return view('video.index')->with('orders', $order);
+        return view('order.index')->with('orders', $order);
     }
 
     /**

@@ -12,8 +12,8 @@
 */
 Route::group(['middleware' => ['web']], function () {
 
-    Route::auth();
 
+    Route::auth();
     //must be loggedin
     Route::group(['middleware' => 'auth'], function () {
 
@@ -24,34 +24,37 @@ Route::group(['middleware' => ['web']], function () {
             'except' => ['create', 'store', 'update', 'destroy']
         ]);
 
-        Route::patch('/video', ['as' => 'video.update', 'uses' => 'VideoController@update']);
-        Route::post('/video', ['as' => 'video_store', 'uses' => 'VideoController@store']);
-
-
+        Route::put('/video', ['as' => 'video.update', 'uses' => 'VideoController@update']);
+        Route::post('/video', ['as' => 'video.store', 'uses' => 'VideoController@store']);
         Route::get('/video', ['as' => 'video_all', 'uses' => 'VideoController@index']);
         Route::get('/video/create', ['as' => 'video_create', 'uses' => 'VideoController@create']);
         Route::get('/video/{video_key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
         Route::get('/video/{video_key}/edit', ['as' => 'video_edit', 'uses' => 'VideoController@edit']);
         Route::resource('/video', 'VideoController', [
-            'except' => ['create', 'store', 'update', 'destroy']
+            'except' => ['create', 'store', 'update']
         ]);
 
+        //Route::get('/products', ['as' => 'video.products', 'uses' => 'VideoController@products']);
+        Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
+
+
+
+        Route::get('/', 'HomeController@index');
+        Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
+        Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
+        Route::get('support', function(){return 'support';});
+
+        Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
+        Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
     });
 
-    //Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
 
 
 
 
 
 
-    Route::get('/', 'HomeController@index');
-    Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);
-    Route::get('credits', ['as' => 'credits', 'uses' => 'pages\CreditsController@index']);
-    Route::get('support', function(){return 'support';});
 
-    Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
-    Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
 
 
 

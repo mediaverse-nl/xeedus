@@ -1,15 +1,15 @@
 
-<ul class="menu dropdown-menu dropdown-menu-large row">
-    @foreach($allSubCategories as $subCate)
-        <li><a href="{{ url('courses/'.$subCate->name.'')  }}">{{ $subCate->name }}</a>
-            <ul >
-                @foreach($subCate->subCategory as $firstNestedSub)
-                    <li class="sub"><a href="{{ url('courses/'.$firstNestedSub->name.'') }}">{{ $firstNestedSub->name }}</a></li>
-                @endforeach()
-            </ul>
-        </li>
-    @endforeach()
-</ul>
+{{--<ul class="menu dropdown-menu dropdown-menu-large row">--}}
+    {{--@foreach($allSubCategories as $subCate)--}}
+        {{--<li><a href="{{ url('courses/'.$subCate->name.'')  }}">{{ $subCate->name }}</a>--}}
+            {{--<ul >--}}
+                {{--@foreach($subCate->subCategory as $firstNestedSub)--}}
+                    {{--<li class="sub"><a href="{{ url('courses/'.$firstNestedSub->name.'') }}">{{ $firstNestedSub->name }}</a></li>--}}
+                {{--@endforeach()--}}
+            {{--</ul>--}}
+        {{--</li>--}}
+    {{--@endforeach()--}}
+{{--</ul>--}}
 
 {{--@foreach($firstNestedSub->subCategory as $secondNestedSub)
     SecondNested : {{ $secondNestedSub->name }}<br>

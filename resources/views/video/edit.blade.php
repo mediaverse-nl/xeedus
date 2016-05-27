@@ -14,24 +14,20 @@
 
                         @include('common.errors')
 
-                        {{ Form::open(['route' => 'video.update']) }}
+                        {{ Form::model($video, array('route' => array('video.update'), 'method' => 'PUT')) }}
 
                         {{ Form::hidden('video_key', $video->video_key) }}
 
                         <div class="form-group">
                             {{ Form::label('name', 'Name') }}
-                            {{ Form::text('name', null, array('class' => 'form-control')) }}
+                            {{ Form::text('name', $video->name, array('class' => 'form-control')) }}
                         </div>
 
                         {!! Form::Label('cate_id', 'cate_id:') !!}
 
-                        <select class="" name="cate_id">
-                            @foreach($categories as $item)
-                                @if($item->cate_id != 0)
-                                    <option value="{{$item->id}}">
-                                        {{$item->name}}
-                                    </option>
-                                @endif
+                        <select name="cate_id" id="name">
+                            @foreach($categories as $data)
+                                <option value="{{ $data->id }}" {{ ($video->category_id === $data->id ? ' selected="selected"' : '') }} rel="{{ $data->rel }}">{{ $data->name }}</option>
                             @endforeach
                         </select>
                         <br>
@@ -59,15 +55,16 @@
                             @else
                                 {{ Form::radio('level', '3') }}<br>
                             @endif
-
                         </div>
+
                         <div class="form-group">
                             {{ Form::label('beschrijving', 'beschrijving') }}
-                            {{ Form::textarea('name', $video->beschrijving, array('class' => 'form-control')) }}
+                            {{ Form::textarea('beschrijving', $video->beschrijving, array('class' => 'form-control')) }}
                         </div>
+
                         <div class="form-group">
                             {{ Form::label('thumbnail', 'thumbnail') }}
-                            {{ Form::file('name', null, array('class' => 'form-control')) }}
+                            {{ Form::file('thumbnail', null, array('class' => 'form-control')) }}
                         </div>
 
                         {{ Form::submit('Edit the video!', array('class' => 'btn btn-primary')) }}

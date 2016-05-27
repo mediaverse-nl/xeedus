@@ -14,11 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $subcate = new Category;
+       // $subcate = new Category;
 
-        $allSubCategories = $subcate -> getCategories();
+      //  $allSubCategories = $subcate -> getCategories();
 
-        view()->share('allSubCategories', $allSubCategories);
+        //view()->share('allSubCategories', $allSubCategories);
 
     }
 

@@ -3,6 +3,7 @@
 namespace Xeedus\Http\Controllers;
 
 use DB;
+use Xeedus\Order;
 use Xeedus\Video;
 use Xeedus\Category;
 use Xeedus\Author;
@@ -82,20 +83,33 @@ class VideoController extends Controller
     public function show($video_key)
     {
         // get the nerd
-        $video = Video::where('video_key', $video_key)->first();
+        $video = DB::table('videos')
+            ->join('author', 'author.id', '=', 'videos.author_id')
+            ->join('users', 'users.id', '=', 'author.user_id')
+            ->where('video_key', $video_key)
+            ->first();
 
         // show the view and pass the nerd to it
         return view('video.show')
             ->with('video', $video);
     }
 
-    public function showMyVideos()
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function products()
     {
-        $user = Author::where('user_id', Auth::user()->id)->first();
+        // get the nerd
+        $video =  DB::table('order')
+            ->join('videos', 'videos.id', '=', 'video_id')
+            ->where('order.user_id', Auth::user()->id)
+            ->get();
 
         // show the view and pass the nerd to it
-        return view('courses.showmyvideos')
-            ->with('users', $user);
+        return view('video.mine')->with('videos', $video);
     }
 
     public function showVideoCate($cate)

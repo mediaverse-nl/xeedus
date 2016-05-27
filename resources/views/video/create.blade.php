@@ -14,7 +14,7 @@
 
                         @include('common.errors')
 
-                        {!! Form::open(['route' => 'video_store']) !!}
+                        {!! Form::open(array('route' => 'video.store')) !!}
 
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}
