@@ -21,16 +21,17 @@
 
                         <br>
                         {!! Form::Label('cate_id', 'cate_id:') !!}
-
-                        <select class="" name="cate_id">
-                            @foreach($categories as $item)
-                                @if($item->cate_id != 0)
-                                    <option value="{{$item->id}}">
-                                        {{$item->name}}
-                                    </option>
-                                @endif
+                        <select name="cate_id" id="name">
+                            @foreach($categories as $data)
+                                <option value="{{ $data->id }}" {{ (0 === $data->id ? ' selected="selected"' : '') }} rel="{{ $data->rel }}">{{ $data->name }}</option>
                             @endforeach
                         </select>
+
+                        <br>
+
+                        {!! Form::label('beschrijving', 'beschrijving') !!}
+                        <br>
+                        {!! Form::textarea('beschrijving') !!}
                         <br>
 
                         {!! Form::label('Product Image') !!}
