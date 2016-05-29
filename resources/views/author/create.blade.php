@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    upload
+    courses
 @stop
 
 @section('content')
@@ -9,23 +9,16 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">upload</div>
+                    <div class="panel-heading">author</div>
+
                     <div class="panel-body">
 
-                        @include('common.errors')
+                        <p>register as an author <a href="/">here</a></p>
 
-                        {!! Form::open(array('route' => 'video.store', 'files' => true)) !!}
+                        {!! Form::open(array('route' => 'partner.store', 'files' => true)) !!}
 
                         {!! Form::label('name', 'name') !!}
                         {!! Form::text('name') !!}
-
-                        <br>
-                        {!! Form::Label('cate_id', 'cate_id:') !!}
-                        <select name="cate_id" id="name">
-                            @foreach($categories as $data)
-                                <option value="{{ $data->id }}" {{ (0 === $data->id ? ' selected="selected"' : '') }} rel="{{ $data->rel }}">{{ $data->name }}</option>
-                            @endforeach
-                        </select>
 
                         <br>
 
@@ -41,7 +34,6 @@
                         {!! Form::submit('submit') !!}
 
                         {!! Form::close() !!}
-
 
                     </div>
                 </div>

@@ -38,6 +38,14 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('products', ['as' => 'products', 'uses' => 'OrderController@index']);
 
 
+        Route::post('/partner', ['as' => 'partner.store', 'uses' => 'AuthorController@store']);
+        Route::get('/partner', ['as' => 'partner', 'uses' => 'AuthorController@index']);
+        Route::get('/partner/request', ['as' => 'partner.create', 'uses' => 'AuthorController@create']);
+        Route::resource('/partner', 'AuthorController', [
+            'except' => ['store', 'update']
+        ]);
+
+
 
         Route::get('/', 'HomeController@index');
         Route::get('contact', ['as' => 'contact', 'uses' => 'pages\ContactController@index']);

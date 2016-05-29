@@ -10,6 +10,7 @@ use Xeedus\Author;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
+
 use Illuminate\Http\Request;
 
 use Xeedus\Http\Requests;
@@ -61,6 +62,8 @@ class VideoController extends Controller
                 ->withInput();
         }
 
+        $random_key = 'img_'.str_random(10);
+
         $author = Author::where('user_id', Auth::user()->id)->first();
         $video = new Video;
 
@@ -68,10 +71,21 @@ class VideoController extends Controller
         $video->name = $request->name;
         $video->category_id = $request->cate_id;
         $video->video_key = str_random(10);
+        $video->thumbnail = $random_key;
 
         $video->save();
 
-        return redirect('video');
+
+        // SET UPLOAD PATH
+        $destinationPath = base_path() . '\storage\app\public\thumbnail';
+        $extension = $request->file('image')->getClientOriginalExtension();
+
+        $upload_success = $request->file('image')->move(
+            $destinationPath,  $random_key.'.'.$extension
+        );
+
+
+        return $upload_success;//redirect('video');
     }
 
     /**
@@ -189,4 +203,5 @@ class VideoController extends Controller
     {
         //
     }
+
 }
