@@ -15,9 +15,7 @@
 
                         <div class="col-lg-3">
                             @foreach($videos as $cate)
-                                @if($cate->cate_id == 0)
-                                    <a href="{{ url('courses/'.str_replace(' ', '-', $cate->name).'/c') }}">{{$cate->name}}</a><br>
-                                @endif
+                                <a href="{{ url('courses/'.str_replace(' ', '-', $cate->name).'/c') }}">{{$cate->name}}</a><br>
                             @endforeach
                         </div>
 

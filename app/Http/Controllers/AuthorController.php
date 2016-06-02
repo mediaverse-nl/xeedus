@@ -2,6 +2,7 @@
 
 namespace Xeedus\Http\Controllers;
 
+use Xeedus\User;
 use Xeedus\Author;
 use Illuminate\Http\Request;
 
@@ -46,9 +47,14 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        //
+
+        $author = User::where('username', $username)->first();
+        
+
+
+        return view('author.show')->with('author', $author);
     }
 
     /**

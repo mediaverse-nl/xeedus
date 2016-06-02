@@ -55,6 +55,12 @@ class DatabaseSeeder extends Seeder
             ['user_id' => 2, 'video_id' => 2,],
         ]);
 
+        DB::table('reviews')->insert([
+            ['user_id' => 1, 'video_id' => 1, 'rating' => 3, 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],
+            ['user_id' => 1, 'video_id' => 2, 'rating' => 3, 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],
+            ['user_id' => 1, 'video_id' => 3, 'rating' => 2, 'tekst' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],
+        ]);
+
         DB::table('author')->insert([
             ['user_id' => 1, 'biography' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],
             ['user_id' => 2, 'biography' => 'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen',],

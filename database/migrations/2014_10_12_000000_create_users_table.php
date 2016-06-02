@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->integer('credits');
             $table->string('status');
             $table->string('role');
+            $table->string('geboortedatum');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

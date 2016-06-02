@@ -13,12 +13,32 @@
 
                     <div class="panel-body">
 
+                        <div class="col-lg-12">
+                            <div class="col-lg-4" style="border: 1px solid;">
+                                <img style="height: 200px; width: 200px;" src="{{Auth::user()->author->imnage}}">
+                            </div>
+                            <div class="col-lg-8">
+                                <label>username</label> : {{Auth::user()->username}}<br>
+                                <label>username</label> : {{Auth::user()->username}}
+                                <div class="pull-right">
+                                    review rating
+                                </div>
+                            </div>
+                            <p>{{Auth::user()->author->biography}}</p>
+                        </div>
+
                         @foreach($videos as $video)
 
                             {{$video->name}}
                             <a href="{{ url('/video/'.$video->video_key.'/edit') }}">edit</a>
                             <br>
+
+                            {{$video->category->name}}
+                            {{--{{$video->author->name}}--}}
                         @endforeach
+
+
+
 
                     </div>
                 </div>

@@ -12,8 +12,8 @@
 */
 Route::group(['middleware' => ['web']], function () {
 
-
     Route::auth();
+
     //must be loggedin
     Route::group(['middleware' => 'auth'], function () {
 
@@ -24,14 +24,14 @@ Route::group(['middleware' => ['web']], function () {
             'except' => ['create', 'store', 'update', 'destroy']
         ]);
 
-        Route::put('/video', ['as' => 'video.update', 'uses' => 'VideoController@update']);
-        Route::post('/video', ['as' => 'video.store', 'uses' => 'VideoController@store']);
         Route::get('/video', ['as' => 'video_all', 'uses' => 'VideoController@index']);
         Route::get('/video/create', ['as' => 'video_create', 'uses' => 'VideoController@create']);
         Route::get('/video/{video_key}', ['as' => 'video_show', 'uses' => 'VideoController@show']);
         Route::get('/video/{video_key}/edit', ['as' => 'video_edit', 'uses' => 'VideoController@edit']);
+        Route::put('/video', ['as' => 'video.update', 'uses' => 'VideoController@update']);
+        Route::post('/video', ['as' => 'video.store', 'uses' => 'VideoController@store']);
         Route::resource('/video', 'VideoController', [
-            'except' => ['create', 'store', 'update']
+            'except' => ['store', 'update']
         ]);
 
         //Route::get('/products', ['as' => 'video.products', 'uses' => 'VideoController@products']);
@@ -45,6 +45,8 @@ Route::group(['middleware' => ['web']], function () {
             'except' => ['store', 'update']
         ]);
 
+        Route::get('author/{username}', ['as' => 'get_author', 'uses' => 'AuthorController@show']);
+
 
 
         Route::get('/', 'HomeController@index');
@@ -53,7 +55,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('support', function(){return 'support';});
 
         Route::get('courses', ['as' => 'all_courses', 'uses' => 'CategoryController@index']);
-        Route::get('courses/{cate}', ['as' => 'sub_courses', 'uses' => 'CategoryController@show']);
+        Route::get('courses/{cate}/c', ['as' => 'all_courses', 'uses' => 'CategoryController@show']);
+
     });
 
 

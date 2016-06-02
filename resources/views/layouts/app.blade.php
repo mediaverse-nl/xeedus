@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {{ Auth::attempt() }}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +49,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/courses') }}">courses</a></li>
                     <li class="dropdown dropdown-large">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 
@@ -66,6 +68,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+
                         @if(Auth::user()->role == 1)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -96,7 +99,7 @@
 
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/credits/') }}"><i class="fa fa-btn fa-sign-out"></i>Credits <span class="pull-right">({{ Auth::user()->credits }})</span></a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{url('/auth/logout')}}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
 
 

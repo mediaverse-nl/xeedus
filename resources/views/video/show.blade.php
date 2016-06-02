@@ -15,9 +15,7 @@
                         <label>titel </label> {{ $video->name }}<br>
                         <label>poster </label>
                         <div style="height: 230px; width: 340px; border: 1px solid #333;">
-                            {{ asset('storage/app/public/thumbnail/'.$video->thumbnail) }}
-
-
+                            <img style="height: 100%; width: auto" src="/thumbnail/{{$video->thumbnail}}.png">
                         </div><br>
                         <label>description </label>{{ $video->beschrijving }}<br>
                         <label>price </label> {{ $video->prijs }}<br>

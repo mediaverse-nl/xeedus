@@ -7,9 +7,22 @@ use Xeedus\Category;
 
 use Xeedus\Http\Requests;
 use Xeedus\Video;
+use View;
+use DB;
+
 
 class CategoryController extends Controller
 {
+
+    protected $category;
+
+    public function __construct()
+    {
+        $this->category = Category::all();
+
+        //View::share('category', $this->category);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +30,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::where('cate_id', '=', '0')->get();
+        //$category = Category::where('cate_id', '=', '0')->get();
 
-        return view('courses.index')->with('category', $category);
+        //return view('courses.index')->with('category', $category);
+        $category = Category::all();
+        
+        return view('courses.index')->with('videos', $category);
     }
 
     /**
@@ -51,13 +67,14 @@ class CategoryController extends Controller
      */
     public function show($cate_name)
     {
-        $category_id = Category::where('name', str_replace('-', ' ', $cate_name))->get();
+        $category_id = Category::where('name', str_replace('-', ' ', $cate_name))->first();
 
-        $videos = Category::where('category_id', $category_id)->where('cate_id', '!=', 0);
+        $videos = Category::where('cate_id', $category_id->id)
+            ->get();
 
-        return view('courses.index')
-            ->with('category', $category_id)
+        return view('courses.indexTwo')
             ->with('videos', $videos);
+            //->with('videos', $videos);
     }
 
     /**

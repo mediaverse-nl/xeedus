@@ -7,8 +7,8 @@ use Xeedus\Order;
 use Xeedus\Video;
 use Xeedus\Category;
 use Xeedus\Author;
-use Illuminate\Support\Facades\Auth;
 use Validator;
+use Auth;
 
 
 use Illuminate\Http\Request;
@@ -24,9 +24,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = DB::table('videos')
-            ->join('author', 'author.id', '=', 'videos.author_id')
-            ->where('user_id', Auth::user()->id)
+
+        $videos = Video::where('author_id', Auth::user()->id)
             ->get();
 
         return view('video.index')->with('videos', $videos);
@@ -77,7 +76,7 @@ class VideoController extends Controller
 
 
         // SET UPLOAD PATH
-        $destinationPath = base_path() . '\storage\app\public\thumbnail';
+        $destinationPath = base_path() . '\public\thumbnail';
         $extension = $request->file('image')->getClientOriginalExtension();
 
         $upload_success = $request->file('image')->move(
@@ -124,16 +123,6 @@ class VideoController extends Controller
 
         // show the view and pass the nerd to it
         return view('video.mine')->with('videos', $video);
-    }
-
-    public function showVideoCate($cate)
-    {
-        $categories = Category::find($cate);
-        $videos = Video::where('name', '=', $categories)->first();
-
-        foreach ($videos as $video) {
-           echo $video->name;
-        }
     }
 
     /**
